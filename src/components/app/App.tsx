@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import Header from '../header/Header'
+import Auth from '../auth/Auth'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -8,11 +9,11 @@ const AppWrapper = styled.div`
   height: 100vh;
 `
 const Container = styled.div`
+  width: 1440px;
   display: grid;
   grid-template-areas:
   'header'
   'content';
-  width: 1440px;
 `
 const Content = styled.div`
   grid-area: content;
@@ -23,7 +24,9 @@ const App: FC = () => (
   <AppWrapper>
     <Container>
       <Header />
-      <Content />
+      <Content>
+        <Auth />
+      </Content>
     </Container>
   </AppWrapper>
 )

@@ -4,7 +4,7 @@ import logo from '../../assets/icons/logo.jpeg'
 
 const Wrapper = styled.div`
   height: 55px;
-  background: orangered;
+  background: darkviolet;
   display: flex;
   align-items: center;
 `
