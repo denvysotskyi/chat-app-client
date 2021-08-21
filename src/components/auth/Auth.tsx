@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Header from '../header/Header'
 import AuthForm from './AuthForm'
 import { IAuth } from '../../types/data'
+import Chat from '../chat/Chat'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -27,7 +28,9 @@ const Auth: FC<IAuth> = ({ isAuth }) => {
     return <AppWrapper>
              <Container>
                <Header />
-               <Content></Content>
+               <Content>
+                 <Chat />
+               </Content>
              </Container>
            </AppWrapper>
   }
