@@ -2,8 +2,9 @@ import { FC } from 'react'
 import styled from 'styled-components'
 import Header from '../header/Header'
 import AuthForm from './AuthForm'
-import { IAuth } from '../../types/data'
 import Chat from '../chat/Chat'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../store/store'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -22,7 +23,9 @@ const Content = styled.div`
   min-height: 700px;
 `
 
-const Auth: FC<IAuth> = ({ isAuth }) => {
+const Auth: FC = () => {
+
+  const isAuth = useSelector((state: RootState) => state.user.isAuth)
 
   if (isAuth) {
     return <AppWrapper>
