@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from 'react'
+import {FC, useState} from 'react'
 import styled from 'styled-components'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux'
 import { getJoinedUserData } from '../../store/userReducer'
 import { io } from 'socket.io-client'
 import axios from 'axios'
-import {string} from "yup";
 
 const Wrapper = styled.div`
   margin-top: 10px;
@@ -84,16 +83,6 @@ const JoinForm: FC = () => {
     setIsJoined(true)
   }
 
-  useEffect(() => {
-    if (isJoined) {
-      const socket = io('http://localhost:7878')
-        socket.emit('joined', {
-          roomId: string,
-          userName: string
-        })
-    }
-  })
-
   return (
     <Wrapper>
       <Formik
@@ -105,6 +94,8 @@ const JoinForm: FC = () => {
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           const url = 'http://localhost:7878/api/1.0/rooms'
           await axios.post(url, values)
+          const socket = io('http://localhost:7878')
+          socket.emit('joined', { values })
           dispatch(getJoinedUserData(values.roomId, values.userName, isJoined))
           setSubmitting(false)
           resetForm()

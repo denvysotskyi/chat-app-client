@@ -20,7 +20,7 @@ const userReducer = (state = initialState, action: any) => {
   }
 }
 
-export const getJoinedUserData = (roomId?: string, userName?: string, isJoined?: boolean) =>
+export const getJoinedUserData = (roomId: string, userName: string, isJoined: boolean) =>
   ({ type: GET_JOINED_USER_DATA, payload: { roomId, userName, isJoined }})
 
 export default userReducer
