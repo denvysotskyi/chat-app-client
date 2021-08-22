@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import Header from '../header/Header'
-import AuthForm from './AuthForm'
+import JoinForm from './JoinForm'
 import Chat from '../chat/Chat'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../store/store'
@@ -23,11 +23,11 @@ const Content = styled.div`
   min-height: 700px;
 `
 
-const Auth: FC = () => {
+const Join: FC = () => {
 
-  const isAuth = useSelector((state: RootState) => state.user.isAuth)
+  const isJoined = useSelector((state: RootState) => state.user.isJoined)
 
-  if (isAuth) {
+  if (isJoined) {
     return <AppWrapper>
              <Container>
                <Header />
@@ -41,10 +41,10 @@ const Auth: FC = () => {
            <Container>
              <Header />
              <Content>
-               <AuthForm />
+               <JoinForm />
              </Content>
            </Container>
          </AppWrapper>
 }
 
-export default Auth
+export default Join

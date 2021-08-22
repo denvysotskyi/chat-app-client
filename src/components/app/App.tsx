@@ -1,11 +1,11 @@
-import Auth from '../auth/Auth'
+import Join from '../join/Join'
 import { FC } from 'react'
 import { Provider } from 'react-redux'
 import store from '../../store/store'
 
 const App: FC = () => (
   <Provider store={store}>
-    <Auth />
+    <Join />
   </Provider>
 )
 

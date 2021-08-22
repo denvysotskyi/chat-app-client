@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import logo from '../../assets/icons/logo.jpeg'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store/store'
-import { getAuthUserData } from '../../store/userReducer'
+import { getJoinedUserData } from '../../store/userReducer'
 
 const Wrapper = styled.div`
   height: 55px;
@@ -42,13 +42,13 @@ const Header: FC = () => {
 
   const dispatch = useDispatch()
 
-  const isAuthUser = useSelector((state: RootState) => state.user.isAuth)
+  const isJoinedUser = useSelector((state: RootState) => state.user.isJoined)
 
-  const [isAuth, setIsAuth] = useState(isAuthUser)
+  const [isJoined, setIsJoined] = useState(isJoinedUser)
 
   const onOut = () => {
-    setIsAuth(false)
-    dispatch(getAuthUserData(isAuth))
+    setIsJoined(false)
+    dispatch(getJoinedUserData(isJoined))
   }
 
   return (
@@ -59,7 +59,7 @@ const Header: FC = () => {
         />
       </LogoWrapper>
       {
-        isAuthUser
+        isJoinedUser
           ? <OutButton onClick={onOut}>
             Выйти
           </OutButton>

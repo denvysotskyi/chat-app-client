@@ -3,9 +3,10 @@ import styled from 'styled-components'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch } from 'react-redux'
-import { getAuthUserData } from '../../store/userReducer'
+import { getJoinedUserData } from '../../store/userReducer'
 import { io } from 'socket.io-client'
 import axios from 'axios'
+import {string} from "yup";
 
 const Wrapper = styled.div`
   margin-top: 10px;
@@ -73,20 +74,23 @@ const SignupSchema = Yup.object().shape({
     .required('Введите ваши данные')
 })
 
-const AuthForm: FC = () => {
+const JoinForm: FC = () => {
 
   const dispatch = useDispatch()
 
-  const [isAuth, setIsAuth] = useState(false)
+  const [isJoined, setIsJoined] = useState(false)
 
-  const onAuth = () => {
-    setIsAuth(true)
+  const onJoin = () => {
+    setIsJoined(true)
   }
 
   useEffect(() => {
-    if (isAuth) {
+    if (isJoined) {
       const socket = io('http://localhost:7878')
-      socket.on('connect', () => console.log(`connect ${socket.id}`))
+        socket.emit('ROOM: JOIN', {
+          roomId: string,
+          userName: string
+        })
     }
   })
 
@@ -101,7 +105,7 @@ const AuthForm: FC = () => {
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           const url = 'http://localhost:7878/api/1.0/rooms'
           await axios.post(url, values)
-          dispatch(getAuthUserData(isAuth))
+          dispatch(getJoinedUserData(values.roomId, values.userName, isJoined))
           setSubmitting(false)
           resetForm()
         }}
@@ -130,7 +134,7 @@ const AuthForm: FC = () => {
                        type={'text'}
                        placeholder={'Введите ваше имя'}
             />
-            <Button onClick={onAuth}
+            <Button onClick={onJoin}
                     type={'submit'}>
               Войти
             </Button>
@@ -141,4 +145,4 @@ const AuthForm: FC = () => {
   )
 }
 
-export default AuthForm
+export default JoinForm
