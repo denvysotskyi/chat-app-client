@@ -1,8 +1,6 @@
 const GET_AUTH_USER_DATA = 'user/GET_AUTH_USER_DATA'
 
 const initialState = {
-  roomName: '',
-  name: '',
   isAuth: false
 }
 
@@ -20,7 +18,7 @@ const userReducer = (state = initialState, action: any) => {
   }
 }
 
-export const getAuthUserData = (roomName: string, name: string, isAuth: boolean) =>
-  ({ type: GET_AUTH_USER_DATA, payload: { roomName, name, isAuth }})
+export const getAuthUserData = (isAuth: boolean) =>
+  ({ type: GET_AUTH_USER_DATA, payload: { isAuth }})
 
 export default userReducer

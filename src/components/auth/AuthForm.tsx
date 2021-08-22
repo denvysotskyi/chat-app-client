@@ -2,9 +2,10 @@ import {FC, useEffect, useState} from 'react'
 import styled from 'styled-components'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
-import { io } from 'socket.io-client'
 import { useDispatch } from 'react-redux'
 import { getAuthUserData } from '../../store/userReducer'
+import { io } from 'socket.io-client'
+import axios from 'axios'
 
 const Wrapper = styled.div`
   margin-top: 10px;
@@ -45,7 +46,7 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
   margin-top: 11px;
-  width: 80px;
+  width: 70px;
   height: 30px;
   border-radius: 8px;
   border: none;
@@ -64,10 +65,10 @@ const Error = styled.div`
 `
 
 const SignupSchema = Yup.object().shape({
-  roomName: Yup.string()
-    .min(2, 'Поле должно содержать минимум 2 символа!')
+  roomId: Yup.string()
+    .min(1)
     .required('Введите ваши данные'),
-  name: Yup.string()
+  userName: Yup.string()
     .min(2, 'Поле должно содержать минимум 2 символа!')
     .required('Введите ваши данные')
 })
@@ -93,13 +94,14 @@ const AuthForm: FC = () => {
     <Wrapper>
       <Formik
         initialValues={{
-          roomName: '',
-          name: '',
-          isAuth
+          roomId: '',
+          userName: ''
         }}
         validationSchema={SignupSchema}
-        onSubmit={(values, {setSubmitting, resetForm}) => {
-          dispatch(getAuthUserData(values.roomName, values.name, isAuth))
+        onSubmit={async (values, { setSubmitting, resetForm }) => {
+          const url = 'http://localhost:7878/api/1.0/rooms'
+          await axios.post(url, values)
+          dispatch(getAuthUserData(isAuth))
           setSubmitting(false)
           resetForm()
         }}
@@ -107,24 +109,24 @@ const AuthForm: FC = () => {
         {({errors, touched}) => (
           <AppAuthForm>
             {
-              errors.roomName && touched.roomName
+              errors.roomId && touched.roomId
                 ? (<Error>
-                  {errors.roomName}
+                  {errors.roomId}
                 </Error>)
                 : null
             }
-            <RoomField name={'roomName'}
+            <RoomField name={'roomId'}
                        type={'text'}
-                       placeholder={'Введите Room name'}
+                       placeholder={'Введите Room Id'}
             />
             {
-              errors.name && touched.name
+              errors.userName && touched.userName
                 ? (<Error>
-                  {errors.name}
+                  {errors.userName}
                 </Error>)
                 : null
             }
-            <NameField name={'name'}
+            <NameField name={'userName'}
                        type={'text'}
                        placeholder={'Введите ваше имя'}
             />
