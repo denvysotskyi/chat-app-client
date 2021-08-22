@@ -44,11 +44,13 @@ const Header: FC = () => {
 
   const isJoinedUser = useSelector((state: RootState) => state.user.isJoined)
 
+  const [roomId] = useState('')
+  const [userName] = useState('')
   const [isJoined, setIsJoined] = useState(isJoinedUser)
 
   const onOut = () => {
     setIsJoined(false)
-    dispatch(getJoinedUserData(isJoined))
+    dispatch(getJoinedUserData(roomId, userName, isJoined))
   }
 
   return (

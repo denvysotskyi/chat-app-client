@@ -87,7 +87,7 @@ const JoinForm: FC = () => {
   useEffect(() => {
     if (isJoined) {
       const socket = io('http://localhost:7878')
-        socket.emit('ROOM: JOIN', {
+        socket.emit('joined', {
           roomId: string,
           userName: string
         })
