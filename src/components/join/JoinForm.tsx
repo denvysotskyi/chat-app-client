@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
 `
-const AppAuthForm = styled(Form)`
+const JoinedForm = styled(Form)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,14 +96,14 @@ const JoinForm: FC = () => {
           await axios.post(url, values)
           const socket = io('http://localhost:7878')
           socket.emit('ROOM: JOIN', { values })
-          socket.on('USERS: GET', ({ roomId, userName }) => console.log(`${userName} is enter in room ${roomId}`))
+          socket.on('ROOM: JOINED', ({ roomId, userName }) => console.log(`${userName} is enter in room ${roomId}`))
           dispatch(getJoinedUserData(values.roomId, values.userName, isJoined))
           setSubmitting(false)
           resetForm()
         }}
       >
         {({errors, touched}) => (
-          <AppAuthForm>
+          <JoinedForm>
             {
               errors.roomId && touched.roomId
                 ? (<Error>
@@ -130,7 +130,7 @@ const JoinForm: FC = () => {
                     type={'submit'}>
               Войти
             </Button>
-          </AppAuthForm>
+          </JoinedForm>
         )}
       </Formik>
     </Wrapper>
