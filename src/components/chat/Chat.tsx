@@ -29,7 +29,7 @@ const Title = styled.h3`
 `
 const List = styled.ul`
   margin-top: 30px;
-  width: 70%;
+  width: 60%;
   height: 70%;
   background: white;
   border-radius: 8px;
@@ -41,6 +41,7 @@ const List = styled.ul`
 `
 const Li = styled.li`
   margin-bottom: 10px;
+  font-weight: 600;
 `
 const MessagesWrapper = styled.div`
   width: 69.9%;
@@ -70,7 +71,7 @@ const Chat: FC = () => {
       <Main>
         <Users>
           <Title>
-            Пользователи: (2)
+            Онлайн: (2)
           </Title>
           <List>
             <Li>

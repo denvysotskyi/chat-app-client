@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch } from 'react-redux'
-import { getJoinedUserData } from '../../store/userReducer'
+import { getJoinedUserData, setUsers } from '../../store/usersReducer'
 import { io } from 'socket.io-client'
 import axios from 'axios'
 
@@ -97,7 +97,10 @@ const JoinForm: FC = () => {
           const socket = io('http://localhost:7878')
           socket.emit('ROOM: JOIN', { values })
 
-          socket.on('ROOM: JOINED', users => console.log(users))
+          socket.on('ROOM: JOINED', users => {
+            console.log(users)
+            dispatch(setUsers(users))
+          })
 
           // socket.on('ROOM: JOINED', ({ roomId, userName }) => console.log(`${userName} is enter in room ${roomId}`))
           dispatch(getJoinedUserData(values.roomId, values.userName, isJoined))

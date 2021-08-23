@@ -6,7 +6,7 @@ import axios from 'axios'
 
 const Wrapper = styled.div`
 `
-const MessagesForm = styled.form`
+const MessagesForm = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: flex-end;

@@ -1,9 +1,9 @@
 import { createStore, combineReducers } from 'redux'
-import userReducer from './userReducer'
+import usersReducer from './usersReducer'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 const rootReducer = combineReducers({
-  user: userReducer
+  user: usersReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>

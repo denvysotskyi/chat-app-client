@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import logo from '../../assets/icons/logo.jpeg'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store/store'
-import { getJoinedUserData } from '../../store/userReducer'
+import { getJoinedUserData } from '../../store/usersReducer'
 
 const Wrapper = styled.div`
   height: 55px;
