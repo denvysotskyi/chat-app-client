@@ -1,6 +1,8 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import ChatForm from './ChatForm'
+import {useSelector} from "react-redux";
+import {RootState} from "../../store/store";
 
 const Wrapper = styled.div`
   display: flex;
@@ -39,8 +41,10 @@ const List = styled.ul`
   align-items: center;
   padding-top: 20px;
 `
-const Li = styled.li`
+const User = styled.li`
   margin-bottom: 10px;
+`
+const Name = styled.p`
   font-weight: 600;
 `
 const MessagesWrapper = styled.div`
@@ -66,20 +70,25 @@ const MessagesDisplay = styled.div`
 
 const Chat: FC = () => {
 
+  const users = useSelector((state: RootState) => state.users.users)
+  console.log('users >', users)
+
   return (
     <Wrapper>
       <Main>
         <Users>
           <Title>
-            Онлайн: (2)
+            Онлайн: {users.length}
           </Title>
           <List>
-            <Li>
-              Иван
-            </Li>
-            <Li>
-              Маша
-            </Li>
+            {
+              users.map((user: any, index: number) => <User key={index}>
+                                                        <Name>
+                                                          {user}
+                                                        </Name>
+                                                      </User>
+              )
+            }
           </List>
         </Users>
         <MessagesWrapper>

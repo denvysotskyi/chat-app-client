@@ -98,7 +98,6 @@ const JoinForm: FC = () => {
           socket.emit('ROOM: JOIN', { values })
 
           socket.on('ROOM: JOINED', users => {
-            console.log(users)
             dispatch(setUsers(users))
           })
 

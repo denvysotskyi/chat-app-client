@@ -42,7 +42,7 @@ const Header: FC = () => {
 
   const dispatch = useDispatch()
 
-  const isJoinedUser = useSelector((state: RootState) => state.user.isJoined)
+  const isJoinedUser = useSelector((state: RootState) => state.users.isJoined)
 
   const [roomId] = useState('')
   const [userName] = useState('')

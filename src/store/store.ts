@@ -3,7 +3,7 @@ import usersReducer from './usersReducer'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 const rootReducer = combineReducers({
-  user: usersReducer
+  users: usersReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>

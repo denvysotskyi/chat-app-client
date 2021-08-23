@@ -25,7 +25,7 @@ const Content = styled.div`
 
 const Join: FC = () => {
 
-  const isJoined = useSelector((state: RootState) => state.user.isJoined)
+  const isJoined = useSelector((state: RootState) => state.users.isJoined)
 
   if (isJoined) {
     return <AppWrapper>

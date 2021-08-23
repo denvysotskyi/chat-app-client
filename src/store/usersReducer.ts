@@ -22,13 +22,13 @@ const usersReducer = (state = initialState, action: any) => {
     case SET_USERS:
       return {
         ...state,
-        users: action.payload
+        ...action.payload
       }
 
     case SET_MESSAGES:
       return {
         ...state,
-        messages: action.payload
+        ...action.payload
       }
 
     default:
