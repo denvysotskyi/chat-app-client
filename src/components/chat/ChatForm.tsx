@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { setMessages } from '../../store/usersReducer'
 
 const Wrapper = styled.div`
 `
@@ -50,16 +52,21 @@ const SignupSchema = Yup.object().shape({
     .required('Введите ваши данные')
 })
 
-const ChatForm: FC = () => (
+const ChatForm: FC = () => {
+
+  const dispatch = useDispatch()
+
+  return (
     <Wrapper>
       <Formik
         initialValues={{
           message: ''
         }}
         validationSchema={SignupSchema}
-        onSubmit={async (values, { setSubmitting, resetForm }) => {
+        onSubmit={async (values, {setSubmitting, resetForm}) => {
           const url = 'http://localhost:7878/api/1.0/rooms'
           await axios.post(url, values)
+
           setSubmitting(false)
           resetForm()
         }}
@@ -84,5 +91,6 @@ const ChatForm: FC = () => (
       </Formik>
     </Wrapper>
   )
+}
 
 export default ChatForm

@@ -71,7 +71,7 @@ const MessagesDisplay = styled.div`
 const Chat: FC = () => {
 
   const users = useSelector((state: RootState) => state.users.users)
-  console.log('users >', users)
+  const roomId = useSelector((state: RootState) => state.users.roomId)
 
   return (
     <Wrapper>
@@ -82,18 +82,18 @@ const Chat: FC = () => {
           </Title>
           <List>
             {
-              users.map((user: any, index: number) => <User key={index}>
-                                                        <Name>
-                                                          {user}
-                                                        </Name>
-                                                      </User>
+              users.map((user: string, index: number) => <User key={index}>
+                                                           <Name>
+                                                            {user}
+                                                           </Name>
+                                                         </User>
               )
             }
           </List>
         </Users>
         <MessagesWrapper>
           <MessagesTitle>
-            Комната: 1
+            Комната: {roomId}
           </MessagesTitle>
           <MessagesDisplay />
           <ChatForm />
