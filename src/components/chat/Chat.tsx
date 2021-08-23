@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
+import ChatForm from './ChatForm'
 
 const Wrapper = styled.div`
   display: flex;
@@ -10,9 +11,11 @@ const Main = styled.div`
   height: 700px;
   border: 1px solid lightgray;
   border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
 `
 const Users = styled.div`
-  width: 30%;
+  width: 29.9%;
   height: 100%;
   background: darkviolet;
   border-radius: 15px 0 0 15px;
@@ -40,10 +43,24 @@ const Li = styled.li`
   margin-bottom: 10px;
 `
 const MessagesWrapper = styled.div`
+  width: 69.9%;
+  height: 100%;
+  background: darkviolet;
+  border-radius: 0 15px 15px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+const MessagesTitle = styled.h2`
+  padding-top: 21px;
+  color: white;
 `
 const MessagesDisplay = styled.div`
-`
-const MessagesForm = styled.div`
+  width: 70%;
+  height: 56.5%;
+  background: white;
+  margin-top: 29px;
+  border-radius: 8px;
 `
 
 const Chat: FC = () => {
@@ -53,7 +70,7 @@ const Chat: FC = () => {
       <Main>
         <Users>
           <Title>
-            Пользователи: (1)
+            Пользователи: (2)
           </Title>
           <List>
             <Li>
@@ -65,12 +82,11 @@ const Chat: FC = () => {
           </List>
         </Users>
         <MessagesWrapper>
-          <MessagesDisplay>
-
-          </MessagesDisplay>
-          <MessagesForm>
-
-          </MessagesForm>
+          <MessagesTitle>
+            Комната: 1
+          </MessagesTitle>
+          <MessagesDisplay />
+          <ChatForm />
         </MessagesWrapper>
       </Main>
     </Wrapper>
