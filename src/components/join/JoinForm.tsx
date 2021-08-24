@@ -95,25 +95,16 @@ const JoinForm: FC = () => {
           const url = 'http://localhost:7878/api/1.0/rooms'
           await axios.post(url, values)
           const socket = io('http://localhost:7878')
-          socket.emit('ROOM: ENTER', { values })
+          socket.emit('ROOM:ENTER', { values })
 
           const setStatus = (users: string[]) => {
             dispatch(setUsers(users))
             console.log(users)
           }
 
-          socket.on('USER: JOINED', setStatus)
-          socket.on('USER: LEAVE', setStatus)
+          socket.on('USER:JOINED', setStatus)
+          // socket.on('USER:LEAVE', setStatus)
 
-          // socket.on('USER: JOINED', users => {
-          //     dispatch(setUsers(users))
-          // })
-          //
-          // socket.on('USER: LEAVE', users => {
-          //   dispatch((setUsers(users)))
-          // })
-
-          // socket.on('ROOM: JOINED', ({ roomId, userName }) => console.log(`${userName} is enter in room ${roomId}`))
           dispatch(getJoinedUserData(values.roomId, values.userName, isJoined))
           setSubmitting(false)
           resetForm()
