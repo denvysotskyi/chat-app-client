@@ -103,7 +103,7 @@ const JoinForm: FC = () => {
           }
 
           socket.on('USER:JOINED', setStatus)
-          // socket.on('USER:LEAVE', setStatus)
+          socket.on('USER:LEAVE', setStatus)
 
           dispatch(getJoinedUserData(values.roomId, values.userName, isJoined))
           setSubmitting(false)
