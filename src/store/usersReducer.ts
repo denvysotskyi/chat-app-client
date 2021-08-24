@@ -1,6 +1,6 @@
 const GET_JOINED_USER_DATA = 'users/GET_JOINED_USER_DATA',
-      SET_USERS = 'users/SET_USERS',
-      SET_MESSAGES = 'users/SET_MESSAGES'
+      GET_USERS = 'users/GET_USERS',
+      GET_MESSAGES = 'users/GET_MESSAGES'
 
 const initialState = {
   roomId: '',
@@ -19,13 +19,13 @@ const usersReducer = (state = initialState, action: any) => {
         ...action.payload
       }
 
-    case SET_USERS:
+    case GET_USERS:
       return {
         ...state,
         ...action.payload
       }
 
-    case SET_MESSAGES:
+    case GET_MESSAGES:
       return {
         ...state,
         ...action.payload
@@ -39,8 +39,8 @@ const usersReducer = (state = initialState, action: any) => {
 export const getJoinedUserData = (roomId: string, userName: string, isJoined: boolean) =>
   ({ type: GET_JOINED_USER_DATA, payload: { roomId, userName, isJoined }})
 
-export const setUsers = (users: string[]) => ({ type: SET_USERS, payload: { users }})
+export const getUsers = (users: string[]) => ({ type: GET_USERS, payload: { users }})
 
-export const setMessages = (messages: string[]) => ({ type: SET_MESSAGES, payload: { messages }})
+export const getMessages = (messages: object) => ({ type: GET_MESSAGES, payload: { messages }})
 
 export default usersReducer

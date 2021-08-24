@@ -2,10 +2,11 @@ import { FC, useState } from 'react'
 import styled from 'styled-components'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
-import { useDispatch } from 'react-redux'
-import { getJoinedUserData, setUsers } from '../../store/usersReducer'
+import {useDispatch, useSelector} from 'react-redux'
+import {getJoinedUserData, getMessages, getUsers} from '../../store/usersReducer'
 import { io } from 'socket.io-client'
 import axios from 'axios'
+import { RootState } from "../../store/store";
 
 const Wrapper = styled.div`
   margin-top: 10px;
@@ -75,6 +76,9 @@ const SignupSchema = Yup.object().shape({
 
 const JoinForm: FC = () => {
 
+  const roomId = useSelector((state: RootState) => state.users.roomId)
+  const userName = useSelector((state: RootState) => state.users.userName)
+
   const dispatch = useDispatch()
 
   const [isJoined, setIsJoined] = useState(false)
@@ -92,18 +96,14 @@ const JoinForm: FC = () => {
         }}
         validationSchema={SignupSchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
+
           const url = 'http://localhost:7878/api/1.0/rooms'
           await axios.post(url, values)
+
           const socket = io('http://localhost:7878')
           socket.emit('ROOM:ENTER', { values })
-
-          const setStatus = (users: string[]) => {
-            dispatch(setUsers(users))
-            console.log(users)
-          }
-
-          socket.on('USER:JOINED', setStatus)
-          socket.on('USER:LEAVE', setStatus)
+          socket.on('USERS:GET', users => dispatch(getUsers(users)))
+          socket.on('MESSAGES:GET', messages => dispatch(getMessages(messages)))
 
           dispatch(getJoinedUserData(values.roomId, values.userName, isJoined))
           setSubmitting(false)

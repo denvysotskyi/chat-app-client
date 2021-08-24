@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import ChatForm from './ChatForm'
-import {useSelector} from "react-redux";
-import {RootState} from "../../store/store";
+import { useSelector } from 'react-redux'
+import { RootState } from '../../store/store'
 
 const Wrapper = styled.div`
   display: flex;
@@ -29,7 +29,7 @@ const Title = styled.h3`
   padding-top: 25px;
   color: white;
 `
-const List = styled.ul`
+const UsersList = styled.ul`
   margin-top: 30px;
   width: 60%;
   height: 70%;
@@ -60,18 +60,25 @@ const MessagesTitle = styled.h2`
   padding-top: 21px;
   color: white;
 `
-const MessagesDisplay = styled.div`
+const MessagesList = styled.ul`
   width: 70%;
   height: 56.5%;
   background: white;
   margin-top: 29px;
   border-radius: 8px;
 `
+const Message = styled.li`
+  margin-bottom: 10px;
+`
+const Msg = styled.p`
+  font-weight: 600;
+`
 
 const Chat: FC = () => {
 
   const users = useSelector((state: RootState) => state.users.users)
   const roomId = useSelector((state: RootState) => state.users.roomId)
+  const messages = useSelector((state: RootState) => state.users.messages)
 
   return (
     <Wrapper>
@@ -80,22 +87,31 @@ const Chat: FC = () => {
           <Title>
             Онлайн: {users.length}
           </Title>
-          <List>
+          <UsersList>
             {
               users.map((user: string, index: number) => <User key={index}>
                                                            <Name>
-                                                            {user}
+                                                             {user}
                                                            </Name>
                                                          </User>
               )
             }
-          </List>
+          </UsersList>
         </Users>
         <MessagesWrapper>
           <MessagesTitle>
             Комната: {roomId}
           </MessagesTitle>
-          <MessagesDisplay />
+          <MessagesList>
+            {
+              messages.map((message: any, index: number) => <Message key={index}>
+                                                              <Msg>
+                                                               {message.message}
+                                                              </Msg>
+                                                            </Message>
+              )
+            }
+          </MessagesList>
           <ChatForm />
         </MessagesWrapper>
       </Main>

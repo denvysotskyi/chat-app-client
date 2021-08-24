@@ -3,8 +3,10 @@ import styled from 'styled-components'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
-import { setMessages } from '../../store/usersReducer'
+import { useDispatch, useSelector } from 'react-redux'
+import { io } from 'socket.io-client'
+import { RootState } from '../../store/store'
+import { getMessages } from '../../store/usersReducer'
 
 const Wrapper = styled.div`
 `
@@ -54,18 +56,28 @@ const SignupSchema = Yup.object().shape({
 
 const ChatForm: FC = () => {
 
+  const roomId = useSelector((state: RootState) => state.users.roomId)
+  const userName = useSelector((state: RootState) => state.users.userName)
+
   const dispatch = useDispatch()
 
   return (
     <Wrapper>
       <Formik
         initialValues={{
+          roomId,
+          userName,
           message: ''
         }}
         validationSchema={SignupSchema}
         onSubmit={async (values, {setSubmitting, resetForm}) => {
+
           const url = 'http://localhost:7878/api/1.0/rooms'
           await axios.post(url, values)
+
+          const socket = io('http://localhost:7878')
+          socket.emit('DATA:SEND', { values })
+          // socket.on('MESSAGES:GET', messages => dispatch(getMessages(messages)))
 
           setSubmitting(false)
           resetForm()
@@ -84,7 +96,7 @@ const ChatForm: FC = () => {
                       type={'text'}
             />
             <Button type={'submit'}>
-              Войти
+              Отправить
             </Button>
           </MessagesForm>
         )}
