@@ -3,8 +3,7 @@ import styled from 'styled-components'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
-import { useDispatch, useSelector } from 'react-redux'
-import { getMessages } from '../../store/usersReducer'
+import { useSelector } from 'react-redux'
 import { io } from 'socket.io-client'
 import { RootState } from '../../store/store'
 
@@ -83,8 +82,6 @@ const SignupSchema = Yup.object().shape({
 
 const ChatForm: FC = () => {
 
-  const dispatch = useDispatch()
-
   const roomId = useSelector((state: RootState) => state.users.roomId)
   const userName = useSelector((state: RootState) => state.users.userName)
 
@@ -102,7 +99,6 @@ const ChatForm: FC = () => {
           await axios.post(url, values)
           const socket = io('http://localhost:7878')
           socket.emit('DATA:SEND', { values })
-          socket.on('MESSAGES:GET', messages => dispatch(getMessages(messages)))
           setSubmitting(false)
           resetForm()
         }}

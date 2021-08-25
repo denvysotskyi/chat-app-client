@@ -29,6 +29,7 @@ const Users = styled.div`
   align-items: center;
   @media ${props => props.theme.media.tablet} {
     width: 100%;
+    min-height: 40%;
     margin-bottom: 2px;
     border-radius: 15px 15px 0 0;
   }
@@ -49,16 +50,18 @@ const TitleSpan = styled.span`
 const UsersList = styled.ul`
   margin-top: 30px;
   width: 60%;
-  height: 70%;
+  height: calc(70% - 20px);
+  overflow: auto;
   background: white;
   border-radius: 8px;
   list-style: none;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 15px;
   @media ${props => props.theme.media.tablet} {
     margin-bottom: 45px;
+    min-height: calc(60% - 20px);
   }
 `
 const User = styled.li`
@@ -90,7 +93,7 @@ const MessagesWrapper = styled.div`
   @media ${props => props.theme.media.tablet} {
     width: 100%;
     border-radius: 0 0 15px 15px;
-    height: 110%;
+    min-height: 60%;
   }
 `
 const MessagesTitle = styled.h2`
@@ -108,14 +111,16 @@ const MessagesTitleSpan = styled.span`
 `
 const MessagesList = styled.ul`
   width: 70%;
-  height: 56.5%;
+  height: calc(56.5% - 10px);
+  overflow: auto;
   background: white;
   margin-top: 29px;
   border-radius: 8px;
   list-style: none;
-  padding: 20px 0 0 20px;
+  padding: 15px 0 0 20px;
   @media ${props => props.theme.media.tablet} {
     padding: 10px 0 0 15px;
+    min-height: calc(38.5% - 10px);
   }
 `
 const Message = styled.li`
