@@ -44,7 +44,7 @@ const Button = styled.button`
 `
 const Error = styled.div`
   font-size: 12px;
-  color: white;
+  color: red;
   margin: 0 7px 8px 0;
 `
 

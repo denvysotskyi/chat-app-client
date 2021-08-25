@@ -7,7 +7,7 @@ import { getJoinedUserData } from '../../store/usersReducer'
 
 const Wrapper = styled.div`
   height: 55px;
-  background: darkviolet;
+  background: blanchedalmond;
   display: flex;
   justify-content: space-between;
   align-items: center;

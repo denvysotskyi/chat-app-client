@@ -20,9 +20,9 @@ const JoinedForm = styled(Form)`
   align-items: center;
   width: 290px;
   min-height: 195px;
-  border: 1px solid black;
+  border: none;
   border-radius: 15px;
-  background: darkviolet;
+  background: blanchedalmond;
 `
 const RoomField = styled(Field)`
   margin: 8px 0 15px 0;
@@ -62,7 +62,7 @@ const Button = styled.button`
 `
 const Error = styled.div`
   font-size: 12px;
-  color: white;
+  color: red;
 `
 
 const SignupSchema = Yup.object().shape({

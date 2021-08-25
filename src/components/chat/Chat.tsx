@@ -19,7 +19,7 @@ const Main = styled.div`
 const Users = styled.div`
   width: 29.9%;
   height: 100%;
-  background: darkviolet;
+  background: blanchedalmond;
   border-radius: 15px 0 0 15px;
   display: flex;
   flex-direction: column;
@@ -27,7 +27,7 @@ const Users = styled.div`
 `
 const Title = styled.h3`
   padding-top: 25px;
-  color: white;
+  color: lightseagreen;
 `
 const UsersList = styled.ul`
   margin-top: 30px;
@@ -42,15 +42,24 @@ const UsersList = styled.ul`
   padding-top: 20px;
 `
 const User = styled.li`
-  margin-bottom: 10px;
 `
-const Name = styled.p`
+interface INameStyled {
+  right: string;
+  bottom: string;
+}
+const Name = styled.p<INameStyled>`
+  margin-right: ${({right}) => right};
+  margin-bottom: ${({bottom}) => bottom};
   font-weight: 600;
+  color: orangered;
+  &:nth-child(odd) {
+    color: blue;
+  }
 `
 const MessagesWrapper = styled.div`
   width: 69.9%;
   height: 100%;
-  background: darkviolet;
+  background: blanchedalmond;
   border-radius: 0 15px 15px 0;
   display: flex;
   flex-direction: column;
@@ -58,7 +67,6 @@ const MessagesWrapper = styled.div`
 `
 const MessagesTitle = styled.h2`
   padding-top: 21px;
-  color: white;
 `
 const MessagesList = styled.ul`
   width: 70%;
@@ -66,12 +74,16 @@ const MessagesList = styled.ul`
   background: white;
   margin-top: 29px;
   border-radius: 8px;
+  list-style: none;
+  padding: 20px 0 0 20px;
 `
 const Message = styled.li`
-  margin-bottom: 10px;
+`
+const MsgWrapper = styled.div`
+  display: flex;
 `
 const Msg = styled.p`
-  font-weight: 600;
+  font-weight: 500;
 `
 
 const Chat: FC = () => {
@@ -90,7 +102,8 @@ const Chat: FC = () => {
           <UsersList>
             {
               users.map((user: string, index: number) => <User key={index}>
-                                                           <Name>
+                                                           <Name right={'0'}
+                                                                 bottom={'10px'}>
                                                              {user}
                                                            </Name>
                                                          </User>
@@ -105,9 +118,15 @@ const Chat: FC = () => {
           <MessagesList>
             {
               messages.map((message: any, index: number) => <Message key={index}>
-                                                              <Msg>
-                                                               {message.message}
-                                                              </Msg>
+                                                              <MsgWrapper>
+                                                                <Name right={'5px'}
+                                                                      bottom={'10px'}>
+                                                                 {message.userName}:
+                                                                </Name>
+                                                                <Msg>
+                                                                 {message.message}
+                                                                </Msg>
+                                                              </MsgWrapper>
                                                             </Message>
               )
             }
