@@ -23,8 +23,12 @@ const JoinedForm = styled(Form)`
   border: none;
   border-radius: 15px;
   background: blanchedalmond;
+  @media ${props => props.theme.media.tablet} {
+    width: 200px;
+    min-height: 180px;
+  }
 `
-const RoomField = styled(Field)`
+const ItemField = styled(Field)`
   margin: 8px 0 15px 0;
   padding-left: 10px;
   width: 200px;
@@ -32,15 +36,13 @@ const RoomField = styled(Field)`
   border-radius: 8px;
   border: none;
   outline: none;
-`
-const NameField = styled(Field)`
-  margin: 8px 0 15px 0;
-  padding-left: 10px;
-  width: 200px;
-  height: 30px;
-  border-radius: 8px;
-  border: none;
-  outline: none;
+  @media ${props => props.theme.media.tablet} {
+    width: 150px;
+    font-size: 10px;
+    ::-webkit-input-placeholder { 
+      font-size: 10px; 
+    }
+  }
 `
 const Button = styled.button`
   display: flex;
@@ -59,10 +61,19 @@ const Button = styled.button`
     transform: translateY(3px);
     transition: .3s all ease;
   }
+  @media ${props => props.theme.media.tablet} {
+    margin-top: 3px;
+    height: 34px;
+    width: 55px;
+    font-size: 10px;
+  }
 `
 const Error = styled.div`
   font-size: 12px;
   color: red;
+  @media ${props => props.theme.media.tablet} {
+    font-size: 7px;
+  }
 `
 
 const SignupSchema = Yup.object().shape({
@@ -119,7 +130,7 @@ const JoinForm: FC = () => {
                 </Error>)
                 : null
             }
-            <RoomField name={'roomId'}
+            <ItemField name={'roomId'}
                        type={'text'}
                        placeholder={'Введите Room Id'}
             />
@@ -130,7 +141,7 @@ const JoinForm: FC = () => {
                 </Error>)
                 : null
             }
-            <NameField name={'userName'}
+            <ItemField name={'userName'}
                        type={'text'}
                        placeholder={'Введите ваше имя'}
             />
