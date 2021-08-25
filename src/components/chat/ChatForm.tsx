@@ -15,23 +15,32 @@ const MessagesForm = styled(Form)`
   flex-direction: column;
   align-items: flex-end;
   margin-top: 30px;
+  @media ${props => props.theme.media.tablet} {
+    align-items: center;
+  }
 `
 const Textarea = styled(Field)`
-  width: 582px;
+  width: 480px;
   height: 100px;
   border-radius: 8px;
   margin-bottom: 20px;
   outline: none;
   border: none;
   padding: 0 0 53px 15px;
+  @media ${props => props.theme.media.widescreen} {
+    width: 440px;
+  }
   @media ${props => props.theme.media.desktop} {
-    width: 480px;
+    width: 360px;
   }
   @media ${props => props.theme.media.laptop} {
-    width: 400px;
+    width: 280px;
   }
   @media ${props => props.theme.media.tablet} {
     width: 310px;
+  }
+  @media ${props => props.theme.media.phone} {
+    width: 170px;
   }
 `
 const Button = styled.button`
@@ -49,6 +58,12 @@ const Button = styled.button`
     cursor: pointer;
     transform: translateY(3px);
     transition: .3s all ease;
+  }
+  @media ${props => props.theme.media.tablet} {
+    margin-bottom: 45px;
+    height: 50px;
+    width: 80px;
+    font-size: 10px;
   }
 `
 const Error = styled.div`

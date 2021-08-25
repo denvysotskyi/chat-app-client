@@ -35,6 +35,12 @@ const Users = styled.div`
 `
 const Title = styled.h3`
   padding-top: 25px;
+  @media ${props => props.theme.media.tablet} {
+    font-size: 19px;
+  }
+  @media ${props => props.theme.media.phone} {
+    font-size: 14px;
+  }
 `
 const TitleSpan = styled.span`
   color: lightseagreen;
@@ -75,10 +81,17 @@ const MessagesWrapper = styled.div`
   @media ${props => props.theme.media.tablet} {
     width: 100%;
     border-radius: 0 0 15px 15px;
+    height: 110%;
   }
 `
 const MessagesTitle = styled.h2`
   padding-top: 21px;
+  @media ${props => props.theme.media.tablet} {
+    font-size: 19px;
+  }
+  @media ${props => props.theme.media.phone} {
+    font-size: 14px;
+  }
 `
 const MessagesTitleSpan = styled.span`
   color: lightseagreen;
