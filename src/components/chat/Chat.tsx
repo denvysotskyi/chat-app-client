@@ -57,6 +57,9 @@ const UsersList = styled.ul`
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
+  @media ${props => props.theme.media.tablet} {
+    margin-bottom: 45px;
+  }
 `
 const User = styled.li`
 `
@@ -69,6 +72,12 @@ const Name = styled.p<INameStyled>`
   margin-bottom: ${({bottom}) => bottom};
   font-weight: 600;
   color: lightseagreen;
+  @media ${props => props.theme.media.tablet} {
+    font-size: 17px;
+  }
+  @media ${props => props.theme.media.phone} {
+    font-size: 12px;
+  }
 `
 const MessagesWrapper = styled.div`
   width: 69.9%;
@@ -95,7 +104,7 @@ const MessagesTitle = styled.h2`
 `
 const MessagesTitleSpan = styled.span`
   color: lightseagreen;
-  margin-left: 5px;
+  margin-left: 5px
 `
 const MessagesList = styled.ul`
   width: 70%;
@@ -105,6 +114,9 @@ const MessagesList = styled.ul`
   border-radius: 8px;
   list-style: none;
   padding: 20px 0 0 20px;
+  @media ${props => props.theme.media.tablet} {
+    padding: 10px 0 0 15px;
+  }
 `
 const Message = styled.li`
 `
@@ -113,6 +125,12 @@ const MsgWrapper = styled.div`
 `
 const Msg = styled.p`
   font-weight: 500;
+  @media ${props => props.theme.media.tablet} {
+    font-size: 17px;
+  }
+  @media ${props => props.theme.media.phone} {
+    font-size: 12px;
+  }
 `
 
 const Chat: FC = () => {

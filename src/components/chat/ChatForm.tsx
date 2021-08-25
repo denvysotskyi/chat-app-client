@@ -61,7 +61,7 @@ const Button = styled.button`
   }
   @media ${props => props.theme.media.tablet} {
     margin-bottom: 45px;
-    height: 50px;
+    height: 40px;
     width: 80px;
     font-size: 10px;
   }
@@ -70,6 +70,9 @@ const Error = styled.div`
   font-size: 12px;
   color: red;
   margin: 0 7px 8px 0;
+  @media ${props => props.theme.media.phone} {
+    font-size: 10px;
+  }
 `
 
 const SignupSchema = Yup.object().shape({

@@ -36,6 +36,11 @@ const OutButton = styled.button`
     transform: translateY(3px);
     transition: .3s all ease;
   }
+  @media ${props => props.theme.media.tablet} {
+    height: 34px;
+    width: 55px;
+    font-size: 10px;
+  }
 `
 
 const Header: FC = () => {
