@@ -11,10 +11,13 @@ const Wrapper = styled.div`
 const Main = styled.div`
   width: 83%;
   height: 700px;
-  border: 1px solid lightgray;
+  border: none;
   border-radius: 15px;
   display: flex;
   justify-content: space-between;
+  @media ${props => props.theme.media.tablet} {
+    flex-direction: column;
+  }
 `
 const Users = styled.div`
   width: 29.9%;
@@ -24,10 +27,18 @@ const Users = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media ${props => props.theme.media.tablet} {
+    width: 100%;
+    margin-bottom: 2px;
+    border-radius: 15px 15px 0 0;
+  }
 `
 const Title = styled.h3`
   padding-top: 25px;
+`
+const TitleSpan = styled.span`
   color: lightseagreen;
+  margin-left: 5px;
 `
 const UsersList = styled.ul`
   margin-top: 30px;
@@ -51,10 +62,7 @@ const Name = styled.p<INameStyled>`
   margin-right: ${({right}) => right};
   margin-bottom: ${({bottom}) => bottom};
   font-weight: 600;
-  color: orangered;
-  &:nth-child(odd) {
-    color: blue;
-  }
+  color: lightseagreen;
 `
 const MessagesWrapper = styled.div`
   width: 69.9%;
@@ -64,9 +72,17 @@ const MessagesWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media ${props => props.theme.media.tablet} {
+    width: 100%;
+    border-radius: 0 0 15px 15px;
+  }
 `
 const MessagesTitle = styled.h2`
   padding-top: 21px;
+`
+const MessagesTitleSpan = styled.span`
+  color: lightseagreen;
+  margin-left: 5px;
 `
 const MessagesList = styled.ul`
   width: 70%;
@@ -97,7 +113,10 @@ const Chat: FC = () => {
       <Main>
         <Users>
           <Title>
-            Онлайн: {users.length}
+            Онлайн:
+            <TitleSpan>
+              {users.length}
+            </TitleSpan>
           </Title>
           <UsersList>
             {
@@ -113,7 +132,10 @@ const Chat: FC = () => {
         </Users>
         <MessagesWrapper>
           <MessagesTitle>
-            Комната: {roomId}
+            Комната:
+            <MessagesTitleSpan>
+              {roomId}
+            </MessagesTitleSpan>
           </MessagesTitle>
           <MessagesList>
             {

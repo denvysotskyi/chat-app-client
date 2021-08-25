@@ -24,6 +24,15 @@ const Textarea = styled(Field)`
   outline: none;
   border: none;
   padding: 0 0 53px 15px;
+  @media ${props => props.theme.media.desktop} {
+    width: 480px;
+  }
+  @media ${props => props.theme.media.laptop} {
+    width: 400px;
+  }
+  @media ${props => props.theme.media.tablet} {
+    width: 310px;
+  }
 `
 const Button = styled.button`
   display: flex;
