@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import {FC, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import ChatForm from './ChatForm'
 import { useSelector } from 'react-redux'
@@ -53,7 +53,6 @@ const UsersList = styled.div`
   flex-wrap: wrap;
   margin-top: 30px;
   width: 60%;
-  height: calc(70% - 20px);
   overflow: auto;
   background: white;
   border-radius: 8px;
@@ -65,6 +64,7 @@ const UsersList = styled.div`
   }
 `
 const User = styled.li`
+  margin: 7px;
 `
 interface INameStyled {
   right: string;
@@ -109,6 +109,7 @@ const MessagesTitleSpan = styled.span`
   color: lightseagreen;
   margin-left: 5px
 `
+
 const MessagesList = styled.ul`
   width: 70%;
   height: calc(56.5% - 10px);
@@ -144,6 +145,14 @@ const Chat: FC = () => {
   const roomId = useSelector((state: RootState) => state.users.roomId)
   const messages = useSelector((state: RootState) => state.users.messages)
 
+  const usersRef: any = useRef<HTMLUListElement>(null)
+  const messagesRef: any = useRef<HTMLUListElement>(null)
+
+  useEffect(() => {
+    usersRef.current.scrollTo(0, 99999)
+    messagesRef.current.scrollTo(0, 99999)
+  }, [users, messages])
+
   return (
     <Wrapper>
       <Main>
@@ -154,7 +163,7 @@ const Chat: FC = () => {
               {users.length}
             </TitleSpan>
           </Title>
-          <UsersList>
+          <UsersList ref={usersRef}>
             {
               users.map((user: string, index: number) => <User key={index}>
                                                            <Name right={'0'}
@@ -173,7 +182,7 @@ const Chat: FC = () => {
               {roomId}
             </MessagesTitleSpan>
           </MessagesTitle>
-          <MessagesList>
+          <MessagesList ref={messagesRef}>
             {
               messages.map((message: any, index: number) => <Message key={index}>
                                                               <MsgWrapper>
