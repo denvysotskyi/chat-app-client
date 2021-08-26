@@ -19,11 +19,25 @@ const Logo = styled.img`
   width: 60px;
   height: 40px;
 `
+const ButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`
+const Name = styled.p`
+  font-weight: 600;
+  color: lightseagreen;
+  @media ${props => props.theme.media.tablet} {
+    font-size: 15px;
+  }
+  @media ${props => props.theme.media.phone} {
+    font-size: 12px;
+  }
+`
 const OutButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 20px;
+  margin: 0 20px 0 10px;
   width: 70px;
   height: 30px;
   border-radius: 8px;
@@ -48,6 +62,7 @@ const Header: FC = () => {
   const dispatch = useDispatch()
 
   const isJoinedUser = useSelector((state: RootState) => state.users.isJoined)
+  const name = useSelector((state: RootState) => state.users.userName)
 
   const [roomId] = useState('')
   const [userName] = useState('')
@@ -67,9 +82,14 @@ const Header: FC = () => {
       </LogoWrapper>
       {
         isJoinedUser
-          ? <OutButton onClick={onOut}>
-            Выйти
-          </OutButton>
+          ? <ButtonWrapper>
+            <Name>
+              {name}
+            </Name>
+            <OutButton onClick={onOut}>
+              Выйти
+            </OutButton>
+          </ButtonWrapper>
           : ''
       }
     </Wrapper>

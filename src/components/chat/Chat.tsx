@@ -47,7 +47,10 @@ const TitleSpan = styled.span`
   color: lightseagreen;
   margin-left: 5px;
 `
-const UsersList = styled.ul`
+const UsersList = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
   margin-top: 30px;
   width: 60%;
   height: calc(70% - 20px);
@@ -55,13 +58,10 @@ const UsersList = styled.ul`
   background: white;
   border-radius: 8px;
   list-style: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding-top: 15px;
   @media ${props => props.theme.media.tablet} {
-    margin-bottom: 45px;
     min-height: calc(60% - 20px);
+    width: 70%;
   }
 `
 const User = styled.li`
@@ -76,7 +76,7 @@ const Name = styled.p<INameStyled>`
   font-weight: 600;
   color: lightseagreen;
   @media ${props => props.theme.media.tablet} {
-    font-size: 17px;
+    font-size: 15px;
   }
   @media ${props => props.theme.media.phone} {
     font-size: 12px;
