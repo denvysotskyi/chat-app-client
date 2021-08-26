@@ -149,8 +149,8 @@ const Chat: FC = () => {
   const messagesRef: any = useRef<HTMLUListElement>(null)
 
   useEffect(() => {
-    usersRef.current.scrollTo(0, 99999)
-    messagesRef.current.scrollTo(0, 99999)
+    usersRef.current.scrollTo(0, messagesRef.current.scrollHeight)
+    messagesRef.current.scrollTo(0, messagesRef.current.scrollHeight)
   }, [users, messages])
 
   return (
