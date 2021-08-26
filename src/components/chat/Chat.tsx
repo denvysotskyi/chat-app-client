@@ -1,4 +1,4 @@
-import {FC, useEffect, useRef } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import ChatForm from './ChatForm'
 import { useSelector } from 'react-redux'

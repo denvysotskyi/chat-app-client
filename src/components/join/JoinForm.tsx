@@ -90,9 +90,7 @@ const JoinForm: FC = () => {
 
   const [isJoined, setIsJoined] = useState(false)
 
-  const onJoin = () => {
-    setIsJoined(true)
-  }
+  const onJoin = () => setIsJoined(true)
 
   return (
     <Wrapper>
@@ -103,9 +101,9 @@ const JoinForm: FC = () => {
         }}
         validationSchema={SignupSchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
-          const url = 'http://localhost:7878/api/1.0/rooms'
+          const url = 'https://chat-app-server-3.herokuapp.com/api/1.0/rooms'
           await axios.post(url, values)
-          const socket = io('http://localhost:7878')
+          const socket = io('https://chat-app-server-3.herokuapp.com')
           socket.emit('ROOM:ENTER', { values })
           socket.on('USERS:GET', users => dispatch(getUsers(users)))
           socket.on('MESSAGES:GET', messages => dispatch(getMessages(messages)))

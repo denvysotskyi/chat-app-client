@@ -95,9 +95,9 @@ const ChatForm: FC = () => {
         }}
         validationSchema={SignupSchema}
         onSubmit={async (values, {setSubmitting, resetForm}) => {
-          const url = 'http://localhost:7878/api/1.0/rooms'
+          const url = 'https://chat-app-server-3.herokuapp.com/api/1.0/rooms'
           await axios.post(url, values)
-          const socket = io('http://localhost:7878')
+          const socket = io('https://chat-app-server-3.herokuapp.com')
           socket.emit('DATA:SEND', { values })
           setSubmitting(false)
           resetForm()
