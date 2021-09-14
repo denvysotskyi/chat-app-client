@@ -22,17 +22,17 @@
   </head>
   <body>
     <div id='root'></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', async () => {
+          try {
+            const reg = await navigator.serviceWorker.register('sw.js')
+            console.log('Service worker registration success', reg)
+          } catch (e) {
+            console.error('Service worker registration fail', e)
+          }
+        })
+      }
+    </script>
   </body>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', async () => {
-        try {
-          const reg = await navigator.serviceWorker.register('sw.js')
-          console.log('Service worker registration success', reg)
-        } catch (e) {
-          console.error('Service worker registration fail', e)
-        }
-      })
-    }
-  </script>
 </html>
