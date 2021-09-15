@@ -11,6 +11,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  grid-area: navbar;
 `
 const LogoWrapper = styled.div`
   margin-left: 20px;

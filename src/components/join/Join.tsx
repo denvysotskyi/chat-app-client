@@ -15,7 +15,7 @@ const Container = styled.div`
   width: 1440px;
   display: grid;
   grid-template-areas:
-  'header'
+  'navbar'
   'content';
 `
 const Content = styled.div`
