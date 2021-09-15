@@ -1,6 +1,6 @@
 const GET_JOINED_USER_DATA = 'users/GET_JOINED_USER_DATA',
-      GET_USERS = 'users/GET_USERS',
-      GET_MESSAGES = 'users/GET_MESSAGES'
+  GET_USERS = 'users/GET_USERS',
+  GET_MESSAGES = 'users/GET_MESSAGES'
 
 const initialState = {
   roomId: '',

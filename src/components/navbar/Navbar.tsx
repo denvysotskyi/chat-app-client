@@ -57,7 +57,7 @@ const OutButton = styled.button`
   }
 `
 
-const Header: FC = () => {
+const Navbar: FC = () => {
 
   const dispatch = useDispatch()
 
@@ -96,4 +96,4 @@ const Header: FC = () => {
   )
 }
 
-export default Header
+export default Navbar

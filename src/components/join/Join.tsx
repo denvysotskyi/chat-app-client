@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import Header from '../header/Header'
+import Navbar from '../navbar/Navbar'
 import JoinForm from './JoinForm'
 import Chat from '../chat/Chat'
 import { useSelector } from 'react-redux'
@@ -29,22 +29,22 @@ const Join: FC = () => {
 
   if (isJoined) {
     return <AppWrapper>
-             <Container>
-               <Header />
-               <Content>
-                 <Chat />
-               </Content>
-             </Container>
-           </AppWrapper>
+      <Container>
+        <Navbar />
+        <Content>
+          <Chat />
+        </Content>
+      </Container>
+    </AppWrapper>
   }
   return <AppWrapper>
-           <Container>
-             <Header />
-             <Content>
-               <JoinForm />
-             </Content>
-           </Container>
-         </AppWrapper>
+    <Container>
+      <Navbar />
+      <Content>
+        <JoinForm />
+      </Content>
+    </Container>
+  </AppWrapper>
 }
 
 export default Join
