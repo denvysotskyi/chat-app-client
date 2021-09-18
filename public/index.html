@@ -26,9 +26,9 @@
         window.addEventListener('load', async () => {
           try {
             const reg = await navigator.serviceWorker.register('sw.js')
-            console.log('Service worker registration success', reg)
+            console.log('Service worker registration is success', reg)
           } catch (e) {
-            console.error('Service worker registration fail', e)
+            console.error('Service worker registration is fail', e)
           }
         })
       }
