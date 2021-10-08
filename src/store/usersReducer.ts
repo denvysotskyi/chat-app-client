@@ -1,16 +1,24 @@
 const GET_JOINED_USER_DATA = 'users/GET_JOINED_USER_DATA',
-  GET_USERS = 'users/GET_USERS',
-  GET_MESSAGES = 'users/GET_MESSAGES'
+      GET_USERS = 'users/GET_USERS',
+      GET_MESSAGES = 'users/GET_MESSAGES'
 
-const initialState = {
-  roomId: '',
-  userName: '',
+interface IInitialState {
+  roomId: string | null,
+  userName: string | null,
+  isJoined: boolean,
+  users: string[],
+  messages: string[]
+}
+
+const initialState: IInitialState = {
+  roomId: null,
+  userName: null,
   isJoined: false,
   users: [],
   messages: []
 }
 
-const usersReducer = (state = initialState, action: any) => {
+const usersReducer = (state = initialState, action: ActionsType): IInitialState => {
   switch(action.type) {
 
     case GET_JOINED_USER_DATA:
@@ -36,11 +44,36 @@ const usersReducer = (state = initialState, action: any) => {
   }
 }
 
-export const getJoinedUserData = (roomId: string, userName: string, isJoined: boolean) =>
+type ActionsType = IgetJoinedUserData | IgetUsers | IgetMessages
+
+interface IgetJoinedUserDataPayload {
+  roomId: string
+  userName: string
+  isJoined: boolean
+}
+interface IgetJoinedUserData {
+  type: typeof GET_JOINED_USER_DATA
+  payload: IgetJoinedUserDataPayload
+}
+export const getJoinedUserData = (roomId: string, userName: string, isJoined: boolean): IgetJoinedUserData =>
   ({ type: GET_JOINED_USER_DATA, payload: { roomId, userName, isJoined }})
 
-export const getUsers = (users: string[]) => ({ type: GET_USERS, payload: { users }})
+interface IgetUsersPayload {
+  users: string[]
+}
+interface IgetUsers {
+  type: typeof GET_USERS
+  payload: IgetUsersPayload
+}
+export const getUsers = (users: string[]): IgetUsers => ({ type: GET_USERS, payload: { users }})
 
-export const getMessages = (messages: object) => ({ type: GET_MESSAGES, payload: { messages }})
+interface IgetMessagesPayload {
+  messages: string[]
+}
+interface IgetMessages {
+  type: typeof GET_MESSAGES
+  payload: IgetMessagesPayload
+}
+export const getMessages = (messages: string[]): IgetMessages => ({ type: GET_MESSAGES, payload: { messages }})
 
 export default usersReducer

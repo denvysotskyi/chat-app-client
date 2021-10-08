@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
@@ -84,7 +84,7 @@ const SignupSchema = Yup.object().shape({
     .required('Введите ваши данные')
 })
 
-const JoinForm: FC = () => {
+const JoinForm = (): JSX.Element => {
 
   const dispatch = useDispatch()
 

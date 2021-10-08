@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import styled from 'styled-components'
 import Navbar from '../navbar/Navbar'
 import JoinForm from './JoinForm'
@@ -23,7 +22,7 @@ const Content = styled.div`
   min-height: 700px;
 `
 
-const Join: FC = () => {
+const Join = (): JSX.Element => {
 
   const isJoined = useSelector((state: RootState) => state.users.isJoined)
 

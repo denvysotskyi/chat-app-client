@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import ChatForm from './ChatForm'
 import { useSelector } from 'react-redux'
@@ -47,7 +47,7 @@ const TitleSpan = styled.span`
   color: lightseagreen;
   margin-left: 5px;
 `
-const UsersList = styled.div`
+const UsersList = styled.ul`
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
@@ -139,7 +139,7 @@ const Msg = styled.p`
   }
 `
 
-const Chat: FC = () => {
+const Chat = (): JSX.Element => {
 
   const users = useSelector((state: RootState) => state.users.users)
   const roomId = useSelector((state: RootState) => state.users.roomId)

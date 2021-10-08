@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 import logo from '../../assets/icons/logo.jpeg'
 import { useDispatch, useSelector } from 'react-redux'
@@ -58,7 +58,7 @@ const OutButton = styled.button`
   }
 `
 
-const Navbar: FC = () => {
+const Navbar = (): JSX.Element => {
 
   const dispatch = useDispatch()
 

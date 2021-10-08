@@ -1,9 +1,8 @@
 import Join from '../join/Join'
-import { FC } from 'react'
 import { Provider } from 'react-redux'
 import store from '../../store/store'
 
-const App: FC = () => (
+const App = (): JSX.Element => (
   <Provider store={store}>
     <Join />
   </Provider>

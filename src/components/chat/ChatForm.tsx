@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import styled from 'styled-components'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
@@ -80,7 +79,7 @@ const SignupSchema = Yup.object().shape({
     .required('Введите ваши данные')
 })
 
-const ChatForm: FC = () => {
+const ChatForm = (): JSX.Element => {
 
   const roomId = useSelector((state: RootState) => state.users.roomId)
   const userName = useSelector((state: RootState) => state.users.userName)
