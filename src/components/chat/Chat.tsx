@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import ChatForm from './ChatForm'
+import ChatForm from '../forms/ChatForm'
 import { useAppSelector } from '../../hooks/hooks'
 
 const Wrapper = styled.div`
