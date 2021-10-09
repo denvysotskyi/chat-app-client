@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, RefObject, MutableRefObject } from 'react'
 import styled from 'styled-components'
 import ChatForm from './ChatForm'
 import { useAppSelector } from '../../hooks/hooks'
@@ -144,12 +144,16 @@ const Chat = (): JSX.Element => {
   const users = useAppSelector(state => state.users.usersArr)
   const messages = useAppSelector(state => state.users.messagesArr)
 
-  const usersRef: any = useRef<HTMLUListElement>(null)
-  const messagesRef: any = useRef<HTMLUListElement>(null)
+  const usersRef = useRef<HTMLUListElement>(null)
+  const messagesRef = useRef<HTMLUListElement>(null)
 
   useEffect(() => {
-    usersRef.current.scrollTo(0, messagesRef.current.scrollHeight)
-    messagesRef.current.scrollTo(0, messagesRef.current.scrollHeight)
+    if (usersRef.current) {
+      usersRef.current.scrollTo(0, usersRef.current.scrollHeight)
+    }
+    if (messagesRef.current) {
+      messagesRef.current.scrollTo(0, messagesRef.current.scrollHeight)
+    }
   }, [users, messages])
 
   return (
