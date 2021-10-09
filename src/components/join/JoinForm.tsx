@@ -78,9 +78,11 @@ const Error = styled.div`
 const SignupSchema = Yup.object().shape({
   roomId: Yup.string()
     .min(1)
+    .max(20, 'Поле должно содержать максимально 20 символов!')
     .required('Введите ваши данные'),
   userName: Yup.string()
     .min(2, 'Поле должно содержать минимум 2 символа!')
+    .max(20, 'Поле должно содержать максимально 20 символов!')
     .required('Введите ваши данные')
 })
 
