@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import type { RootState } from './store'
 
 interface UsersState {
   roomId: string,
@@ -40,11 +39,5 @@ export const usersSlice = createSlice({
 })
 
 export const { getRoomId, getUserName, getIsJoined, getUsers, getMessages } = usersSlice.actions
-
-export const selectRoomId = (state: RootState) => state.users.roomId
-export const selectUserName = (state: RootState) => state.users.userName
-export const selectIsJoined = (state: RootState) => state.users.isJoined
-export const selectUsersArr = (state: RootState) => state.users.usersArr
-export const selectMessagesArr = (state: RootState) => state.users.messagesArr
 
 export default usersSlice.reducer
