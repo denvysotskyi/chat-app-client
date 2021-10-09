@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import ChatForm from './ChatForm'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../store/store'
+import { useAppSelector } from '../../hooks/hooks'
+import { getRoomId } from '../../store/usersSlice'
 
 const Wrapper = styled.div`
   display: flex;
@@ -141,9 +141,9 @@ const Msg = styled.p`
 
 const Chat = (): JSX.Element => {
 
-  const users = useSelector((state: RootState) => state.users.users)
-  const roomId = useSelector((state: RootState) => state.users.roomId)
-  const messages = useSelector((state: RootState) => state.users.messages)
+  const roomId = useAppSelector(state => state.users.roomId)
+  const users = useAppSelector(state => state.users.usersArr)
+  const messages = useAppSelector(state => state.users.messagesArr)
 
   const usersRef: any = useRef<HTMLUListElement>(null)
   const messagesRef: any = useRef<HTMLUListElement>(null)

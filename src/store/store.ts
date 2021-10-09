@@ -1,16 +1,11 @@
-import { createStore, combineReducers } from 'redux'
-import usersReducer from './usersReducer'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import { configureStore } from '@reduxjs/toolkit'
+import usersSlice from './usersSlice'
 
-const rootReducer = combineReducers({
-  users: usersReducer
+export const store = configureStore({
+  reducer: {
+    users: usersSlice
+  }
 })
 
-export type RootState = ReturnType<typeof rootReducer>
-
-const store = createStore( rootReducer, composeWithDevTools())
-
-export default store
-
-
-
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch

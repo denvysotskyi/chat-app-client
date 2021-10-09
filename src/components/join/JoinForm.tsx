@@ -2,8 +2,8 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
-import { useDispatch } from 'react-redux'
-import { getJoinedUserData, getMessages, getUsers } from '../../store/usersReducer'
+import { getRoomId, getUserName, getIsJoined, getMessages, getUsers } from '../../store/usersSlice'
+import { useAppDispatch } from '../../hooks/hooks'
 import { io } from 'socket.io-client'
 import axios from 'axios'
 
@@ -86,7 +86,7 @@ const SignupSchema = Yup.object().shape({
 
 const JoinForm = (): JSX.Element => {
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const [isJoined, setIsJoined] = useState(false)
 
@@ -107,7 +107,9 @@ const JoinForm = (): JSX.Element => {
           socket.emit('ROOM:ENTER', { values })
           socket.on('USERS:GET', users => dispatch(getUsers(users)))
           socket.on('MESSAGES:GET', messages => dispatch(getMessages(messages)))
-          dispatch(getJoinedUserData(values.roomId, values.userName, isJoined))
+          dispatch(getRoomId(values.roomId))
+          dispatch(getUserName(values.userName))
+          dispatch(getIsJoined(isJoined))
           setSubmitting(false)
           resetForm()
         }}

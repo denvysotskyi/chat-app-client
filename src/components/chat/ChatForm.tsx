@@ -2,9 +2,8 @@ import styled from 'styled-components'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
-import { useSelector } from 'react-redux'
+import { useAppSelector } from '../../hooks/hooks'
 import { io } from 'socket.io-client'
-import { RootState } from '../../store/store'
 
 const Wrapper = styled.div`
 `
@@ -81,8 +80,8 @@ const SignupSchema = Yup.object().shape({
 
 const ChatForm = (): JSX.Element => {
 
-  const roomId = useSelector((state: RootState) => state.users.roomId)
-  const userName = useSelector((state: RootState) => state.users.userName)
+  const roomId = useAppSelector(state => state.users.roomId)
+  const userName = useAppSelector(state => state.users.userName)
 
   return (
     <Wrapper>

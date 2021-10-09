@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import logo from '../../assets/icons/logo.jpeg'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../store/store'
-import { getJoinedUserData } from '../../store/usersReducer'
+import { useAppSelector, useAppDispatch } from '../../hooks/hooks'
+import { getRoomId, getUserName, getIsJoined } from '../../store/usersSlice'
 
 const Wrapper = styled.div`
   height: 55px;
@@ -60,10 +59,10 @@ const OutButton = styled.button`
 
 const Navbar = (): JSX.Element => {
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
-  const isJoinedUser = useSelector((state: RootState) => state.users.isJoined)
-  const name = useSelector((state: RootState) => state.users.userName)
+  const isJoinedUser = useAppSelector(state => state.users.isJoined)
+  const name = useAppSelector(state => state.users.userName)
 
   const [roomId] = useState('')
   const [userName] = useState('')
@@ -71,7 +70,9 @@ const Navbar = (): JSX.Element => {
 
   const onOut = () => {
     setIsJoined(false)
-    dispatch(getJoinedUserData(roomId, userName, isJoined))
+    dispatch(getRoomId(roomId))
+    dispatch(getUserName(userName))
+    dispatch(getIsJoined(isJoined))
   }
 
   return (

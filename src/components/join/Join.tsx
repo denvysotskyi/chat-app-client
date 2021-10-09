@@ -2,8 +2,7 @@ import styled from 'styled-components'
 import Navbar from '../navbar/Navbar'
 import JoinForm from './JoinForm'
 import Chat from '../chat/Chat'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../store/store'
+import { useAppSelector } from '../../hooks/hooks'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -24,7 +23,7 @@ const Content = styled.div`
 
 const Join = (): JSX.Element => {
 
-  const isJoined = useSelector((state: RootState) => state.users.isJoined)
+  const isJoined = useAppSelector(state => state.users.isJoined)
 
   if (isJoined) {
     return <AppWrapper>
