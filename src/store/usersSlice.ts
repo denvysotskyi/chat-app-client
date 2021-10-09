@@ -21,10 +21,10 @@ export const usersSlice = createSlice({
   initialState,
   reducers: {
     getRoomId: (state, action: PayloadAction<string>) => {
-      state.roomId += action.payload
+      state.roomId = action.payload
     },
     getUserName: (state, action: PayloadAction<string>) => {
-      state.userName += action.payload
+      state.userName = action.payload
     },
     getIsJoined: (state, action: PayloadAction<boolean>) => {
       state.isJoined = action.payload

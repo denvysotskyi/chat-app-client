@@ -64,8 +64,8 @@ const Navbar = (): JSX.Element => {
   const isJoinedUser = useAppSelector(state => state.users.isJoined)
   const name = useAppSelector(state => state.users.userName)
 
-  const [roomId] = useState('')
-  const [userName] = useState('')
+  const roomId = ''
+  const userName = ''
   const [isJoined, setIsJoined] = useState(isJoinedUser)
 
   const onOut = () => {

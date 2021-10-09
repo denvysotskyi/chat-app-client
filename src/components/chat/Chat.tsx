@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import ChatForm from './ChatForm'
 import { useAppSelector } from '../../hooks/hooks'
-import { getRoomId } from '../../store/usersSlice'
 
 const Wrapper = styled.div`
   display: flex;
