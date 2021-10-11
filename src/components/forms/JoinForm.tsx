@@ -92,7 +92,7 @@ const JoinForm = (): JSX.Element => {
 
   const [isJoined, setIsJoined] = useState(false)
 
-  const onJoin = () => setIsJoined(true)
+  const onJoin: () => void = () => setIsJoined(true)
 
   return (
     <Wrapper>

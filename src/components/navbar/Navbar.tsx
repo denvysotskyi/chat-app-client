@@ -68,7 +68,7 @@ const Navbar = (): JSX.Element => {
   const userName: string = ''
   const [isJoined, setIsJoined] = useState(isJoinedUser)
 
-  const onOut = () => {
+  const onOut: () => void = () => {
     setIsJoined(false)
     dispatch(getRoomId(roomId))
     dispatch(getUserName(userName))

@@ -74,8 +74,7 @@ const Error = styled.div`
 
 const SignupSchema = Yup.object().shape({
   message: Yup.string()
-    .min(2, 'Поле должно содержать минимум 2 символа!')
-    .required('Введите ваши данные')
+    .required('Введите сообщение')
 })
 
 const ChatForm = (): JSX.Element => {
