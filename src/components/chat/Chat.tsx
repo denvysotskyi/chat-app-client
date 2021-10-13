@@ -168,12 +168,12 @@ const Chat = (): JSX.Element => {
           </Title>
           <UsersList ref={usersRef}>
             {
-              users.map((user: string, index: number) => <User key={index}>
-                                                           <Name right={'0'}
-                                                                 bottom={'10px'}>
+              users.map((user: string, idx: number) => <User key={idx}>
+                                                         <Name right={'0'}
+                                                               bottom={'10px'}>
                                                              {user}
-                                                           </Name>
-                                                         </User>
+                                                         </Name>
+                                                       </User>
               )
             }
           </UsersList>
@@ -187,14 +187,14 @@ const Chat = (): JSX.Element => {
           </MessagesTitle>
           <MessagesList ref={messagesRef}>
             {
-              messages.map((message: any, index: number) => <Message key={index}>
+              messages.map((msg: any, idx: number) => <Message key={idx}>
                                                               <MsgWrapper>
                                                                 <Name right={'5px'}
                                                                       bottom={'10px'}>
-                                                                 {message.userName}:
+                                                                 {msg.userName}:
                                                                 </Name>
                                                                 <Msg>
-                                                                 {message.message}
+                                                                 {msg.message}
                                                                 </Msg>
                                                               </MsgWrapper>
                                                             </Message>
